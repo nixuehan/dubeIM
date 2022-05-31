@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package dube.cat;
+
+option go_package = "github.com/nixuehan/dube/protocol/cat;cat";
+
+message IdentifyReq {
+  string server = 1;
+  bytes token = 3;
+}
+
+message IdentifyResp {
+  int64 mid = 1;
+  string key = 2;
+  string roomID = 3;
+  int64 heartbeat = 4;
+}
+
+message HeartbeatReq {
+  int64  mid = 1;
+  string key = 2;
+  string server = 3;
+}
+
+message HeartbeatResp {
+
+}
+
+service cat{
+  rpc Identify(IdentifyReq) returns(IdentifyResp);
+  rpc Heartbeat(HeartbeatReq) returns(HeartbeatResp);
+}
